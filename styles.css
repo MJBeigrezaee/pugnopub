@@ -42,17 +42,17 @@ ul {
 
 /* Styling for each publication item */
 .publication-item {
-    display: flex;
-    flex-direction: column; /* Ensure the button and details are aligned vertically */
-    align-items: flex-start; /* Align all items to the left */
+    display: block; /* Change to block so that it breaks into a new line */
     background-color: #ffffff;
     margin-bottom: 15px;
     padding: 15px;
     border-radius: 5px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
+/* The rest of the CSS remains unchanged */
 .publication-number {
     font-weight: bold;
     font-size: 18px;
@@ -63,6 +63,7 @@ ul {
     color: #333;
     text-decoration: none;
     margin-left: 10px;
+    display: inline-block;
 }
 
 .publication-title:hover {
@@ -78,7 +79,7 @@ ul {
     color: white;
     border: none;
     border-radius: 5px;
-    margin-top: 10px; /* Add margin to space out the button from the title */
+    float: right; /* Ensure the button floats to the right */
 }
 
 .details-btn:hover {
@@ -87,11 +88,12 @@ ul {
 
 /* Styling for the publication details */
 .publication-details {
-    margin-top: 10px;
     display: none;
+    margin-top: 10px;
     padding: 10px;
     border-top: 1px solid #ddd;
-    width: 100%; /* Make sure the details section takes the full width */
+    width: 100%; /* Ensure the details section takes full width */
+    clear: both; /* This ensures it stays below the title and button */
 }
 
 /* Show More Button */
