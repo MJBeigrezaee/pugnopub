@@ -30,13 +30,35 @@ function renderPublications(data) {
     data.patentPublications.forEach((publication, index) => {
         createPublicationListItem(patentList, publication, 'patent', index);
     });
+
+    // Initialize the "Show More" buttons
+    initializeShowMore('journal');
+    initializeShowMore('book');
+    initializeShowMore('patent');
+}
+
+// Initialize Show More functionality for each section
+function initializeShowMore(type) {
+    const showMoreButton = document.getElementById(`showMore${capitalizeFirstLetter(type)}s`);
+    const allItems = document.querySelectorAll(`#${type}List .publication-item`);
+
+    // Initially hide all but the first 5 items
+    allItems.forEach((item, index) => {
+        if (index >= 5) {
+            item.style.display = 'none';
+        }
+    });
+
+    // Set the "Show More" functionality
+    showMoreButton.textContent = 'Show More';
+    showMoreButton.onclick = () => loadAllItems(type);
 }
 
 // Create individual publication list items
 function createPublicationListItem(list, publication, type, index) {
     const li = document.createElement("li");
     li.classList.add("publication-item");
-    li.innerHTML = `
+    li.innerHTML = `        
         <span class="publication-number">${index + 1}.</span> 
         <a href="#" class="publication-title">${publication.title}</a>
         <button class="details-btn" onclick="toggleDetails('${type}', ${index})">+</button>
@@ -64,38 +86,18 @@ function toggleDetails(type, index) {
 }
 
 // Show More functionality for pagination
-function showMore(type) {
-    const allItems = document.querySelectorAll(`#${type}List .publication-item`);
-    const showMoreButton = document.getElementById(`showMore${capitalizeFirstLetter(type)}s`);
-    
-    let visibleCount = 0;
-    allItems.forEach((item, index) => {
-        if (index < 5) {
-            item.style.display = 'block';  // Show first 5 publications
-            visibleCount++;
-        } else {
-            item.style.display = 'none'; // Hide the rest
-        }
-    });
-    
-    // Toggle "Show More" / "Show Less" functionality
-    if (visibleCount === 5) {
-        showMoreButton.textContent = 'Show More';
-        showMoreButton.onclick = () => loadAllItems(type);
-    }
-}
-
-// Load all publications when clicking "Show More"
 function loadAllItems(type) {
     const allItems = document.querySelectorAll(`#${type}List .publication-item`);
     const showMoreButton = document.getElementById(`showMore${capitalizeFirstLetter(type)}s`);
+
+    // Show all items in the selected section
+    allItems.forEach(item => item.style.display = 'block');
     
-    allItems.forEach(item => item.style.display = 'block'); // Show all items
     showMoreButton.textContent = 'Show Less';
     showMoreButton.onclick = () => showLess(type);
 }
 
-// Show less functionality
+// Show Less functionality
 function showLess(type) {
     const allItems = document.querySelectorAll(`#${type}List .publication-item`);
     const showMoreButton = document.getElementById(`showMore${capitalizeFirstLetter(type)}s`);
