@@ -1,0 +1,92 @@
+{
+  "journalPublications": [
+    {
+      "title": "Journal Paper 1",
+      "authors": "Author A, Author B",
+      "journal": "Journal of Science",
+      "doi": "10.1234/journal1",
+      "supplementaryData": "data1.mp4"
+    },
+    {
+      "title": "Journal Paper 2",
+      "authors": "Author C",
+      "journal": "Science Advances",
+      "doi": "10.1234/journal2",
+      "supplementaryData": "data2.mp4"
+    },
+    {
+      "title": "Journal Paper 3",
+      "authors": "Author D",
+      "journal": "Nature",
+      "doi": "10.1234/journal3",
+      "supplementaryData": ""
+    },
+    {
+      "title": "Journal Paper 4",
+      "authors": "Author E",
+      "journal": "Cell",
+      "doi": "10.1234/journal4",
+      "supplementaryData": ""
+    },
+    {
+      "title": "Journal Paper 5",
+      "authors": "Author F",
+      "journal": "Science",
+      "doi": "10.1234/journal5",
+      "supplementaryData": "data4.mp4"
+    },
+    {
+      "title": "Journal Paper 6",
+      "authors": "Author G",
+      "journal": "Lancet",
+      "doi": "10.1234/journal6",
+      "supplementaryData": "data5.mp4"
+    }
+  ],
+  "bookPublications": [
+    {
+      "title": "Book Title 1",
+      "authors": "Author H",
+      "journal": "Springer",
+      "doi": "10.5678/book1",
+      "supplementaryData": ""
+    },
+    {
+      "title": "Book Title 2",
+      "authors": "Author I",
+      "journal": "Elsevier",
+      "doi": "10.5678/book2",
+      "supplementaryData": "data3.mp4"
+    },
+    {
+      "title": "Book Title 3",
+      "authors": "Author J",
+      "journal": "Wiley",
+      "doi": "10.5678/book3",
+      "supplementaryData": ""
+    }
+  ],
+  "patentPublications": [
+    {
+      "title": "Patent Title 1",
+      "authors": "Author K",
+      "journal": "Patent Journal",
+      "doi": "10.9101/patent1",
+      "supplementaryData": ""
+    },
+    {
+      "title": "Patent Title 2",
+      "authors": "Author L",
+      "journal": "Patent Gazette",
+      "doi": "10.9101/patent2",
+      "supplementaryData": ""
+    },
+    {
+      "title": "Patent Title 3",
+      "authors": "Author M",
+      "journal": "Patent Journal",
+      "doi": "10.9101/patent3",
+      "supplementaryData": ""
+    }
+  ]
+}

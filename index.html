@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Publications</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Page Header -->
+        <header>
+            <h1>My Publications</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search publications..." oninput="filterPublications()">
+            </div>
+        </header>
+
+        <!-- Publications Sections -->
+        <section id="journalPublications">
+            <h2>Journal Publications</h2>
+            <ul id="journalList"></ul>
+            <button id="showMoreJournals" onclick="showMore('journal')">Show More</button>
+        </section>
+
+        <section id="bookPublications">
+            <h2>Books</h2>
+            <ul id="bookList"></ul>
+            <button id="showMoreBooks" onclick="showMore('book')">Show More</button>
+        </section>
+
+        <section id="patentPublications">
+            <h2>Patents</h2>
+            <ul id="patentList"></ul>
+            <button id="showMorePatents" onclick="showMore('patent')">Show More</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
