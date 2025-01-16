@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Your Publications</title>
+    <!-- Link to your independent CSS -->
     <link rel="stylesheet" href="styles.css">
+    <!-- External Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
 
 </head>
-<body>
+
+<body class="publications-page">
     <div class="container">
         <!-- Page Header -->
         <header>
-            <h1>My Publications</h1>
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search publications..." oninput="filterPublications()">
-            </div>
+            <h1>Nicola Maria Pugno</h1>
         </header>
+
+        <!-- Add Paper Button (Small + Button) -->
+        <button id="addPaperBtn" class="add-paper-btn">+</button>
+
+        <!-- Password Prompt Section (Initially Hidden) -->
+        <section class="password-section" id="passwordSection" style="display: none;">
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button onclick="checkPassword()">Submit</button>
+            <p id="passwordError" style="color: red; display: none;">Incorrect password, try again!</p>
+        </section>
+
+
 
         <!-- Publications Sections -->
         <section id="journalPublications">
@@ -26,20 +40,9 @@
             <button id="showMoreJournals" onclick="showMore('journal')">Show More</button>
             <ul id="journalList"></ul>
         </section>
-
-        <section id="bookPublications">
-            <h2>Books</h2>
-            <ul id="bookList"></ul>
-            <button id="showMoreBooks" onclick="showMore('book')">Show More</button>
-        </section>
-
-        <section id="patentPublications">
-            <h2>Patents</h2>
-            <ul id="patentList"></ul>
-            <button id="showMorePatents" onclick="showMore('patent')">Show More</button>
-        </section>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
