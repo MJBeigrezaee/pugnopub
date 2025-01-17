@@ -30,31 +30,41 @@
             <h3>Paper Information</h3>
             <label for="title">Title:</label>
             <input type="text" id="title" placeholder="Title of the Paper">
-        
+
             <label for="authors">Authors:</label>
             <input type="text" id="authors" placeholder="Authors of the Paper">
-        
+
             <label for="journal">Journal:</label>
             <input type="text" id="journal" placeholder="Journal of the Paper">
-        
+
             <label for="volume">Volume:</label>
             <input type="text" id="volume" placeholder="Volume (if available)">
-        
+
             <label for="page">Page:</label>
             <input type="text" id="page" placeholder="Page (if available)">
-        
+
             <label for="year">Year:</label>
             <input type="text" id="year" placeholder="Year of publication">
-        
+
             <label for="pdf">PDF URL:</label>
             <input type="url" id="pdf" placeholder="URL to PDF">
-        
+
             <label for="doi">DOI:</label>
             <input type="text" id="doi" placeholder="DOI" disabled>
-        
-            <button onclick="submitPaper()">Submit Paper</button>
+
+            <button id="submitButton" onclick="submitPaper()">Submit</button>
+            <span id="submitTick" class="tick"></span>
+
         </section>
-        
+
+        <section id="jsonOutputSection" style="display: none;">
+            <h3>Generated JSON for the New Paper</h3>
+            <textarea id="jsonOutput" rows="10" cols="50"></textarea>
+            <button id="copyButton" onclick="copyJSON()">Copy</button>
+            <span id="copyTick" class="tick"></span>
+        </section>
+
+
     </div>
 
     <div id="errorMessage" class="error-message"></div>

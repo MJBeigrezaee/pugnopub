@@ -1,28 +1,92 @@
-// Check if DOI exists in the current publications.json
+// Section 1: Helper Functions and Utility
+
+// Function to fetch the current publications from the JSON file
+async function fetchPublications() {
+    try {
+        const response = await fetch('publications.json');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching publications:', error);
+        return [];
+    }
+}
+
+// Function to get the new ID based on the current JSON
+async function getNewID() {
+    try {
+        const response = await fetch('publications.json');
+        const data = await response.json();
+        const maxID = data.reduce((max, paper) => Math.max(max, parseInt(paper.id)), 0);
+        return maxID + 1;
+    } catch (error) {
+        console.error('Error fetching JSON file:', error);
+        return 1;
+    }
+}
+
+// Section 2: Display Editable Data in the Form
+
+async function displayEditableData(title, authors, journal, volume, page, doi, year) {
+    const paperInfoSection = document.getElementById('paperInfoSection');
+    paperInfoSection.style.display = 'block';
+
+    document.getElementById('title').value = title;
+    document.getElementById('authors').value = authors;
+    document.getElementById('journal').value = journal;
+    document.getElementById('doi').value = doi;
+
+    if (document.getElementById('volume')) {
+        document.getElementById('volume').value = volume;
+    }
+    if (document.getElementById('page')) {
+        document.getElementById('page').value = page;
+    }
+    if (document.getElementById('year')) {
+        document.getElementById('year').value = year;
+    }
+
+    const doiSection = document.getElementById("doiSection");
+    doiSection.style.display = 'none';
+
+    const newID = await getNewID();
+    const newPaperJSON = {
+        id: newID.toString(),
+        authors: authors,
+        title: title,
+        pdf: "",
+        journal: `${journal}, (${year}), ${volume}, ${page}`,
+        doi: doi,
+        supplementary: []
+    };
+
+    const updatedJSON = JSON.stringify([newPaperJSON], null, 4);
+    const jsonOutputSection = document.getElementById('jsonOutputSection');
+    const jsonOutput = document.getElementById('jsonOutput');
+    jsonOutput.value = JSON.stringify(newPaperJSON, null, 4) + ",";
+    jsonOutputSection.style.display = 'block';
+}
+
+// Section 3: Validation, Metadata Fetching, and Error Handling
+
 async function checkDOI() {
     let doiInput = document.getElementById('doiInput').value.trim();
 
-    // Step 1: Validate DOI format
     if (!doiInput.startsWith('https://doi.org/') && !doiInput.startsWith('doi.org/') && !doiInput.startsWith('10.')) {
         showErrorMessage('Invalid DOI format. Please enter a valid DOI starting with "https://doi.org/", "doi.org/", or "10."');
         return;
     }
 
-    // Step 2: Normalize the user input
     if (doiInput.startsWith('https://doi.org/')) {
         doiInput = doiInput.replace('https://doi.org/', '');
     } else if (doiInput.startsWith('doi.org/')) {
         doiInput = doiInput.replace('doi.org/', '');
     }
-
     doiInput = 'https://doi.org/' + doiInput;
 
     try {
-        // Fetch the current papers from the JSON file
         const response = await fetch('publications.json');
         const data = await response.json();
 
-        // Step 4: Check if the DOI exists
         const existingPaper = data.find(paper => (paper.doi || '').toLowerCase().trim() === doiInput.toLowerCase().trim());
 
         if (existingPaper) {
@@ -37,16 +101,14 @@ async function checkDOI() {
     }
 }
 
-// Function to fetch paper metadata from CrossRef
 async function fetchPaperMetadata(normalizedDOI) {
     try {
         const response = await fetch(`https://api.crossref.org/works/${normalizedDOI}`);
         if (!response.ok) throw new Error('Failed to fetch data from CrossRef');
-        
+
         const data = await response.json();
         const message = data.message;
 
-        // Extracting relevant fields
         const title = message.title ? message.title[0] : 'N/A';
         const authors = message.author
             ? message.author.map(author => `${author.given} ${author.family}`).join(', ')
@@ -56,7 +118,6 @@ async function fetchPaperMetadata(normalizedDOI) {
         const page = message.page || 'N/A';
         const year = message.created ? message.created['date-parts'][0][0] : 'N/A';
 
-        // Pass all values including year, volume, and page to the display function
         displayEditableData(title, authors, journal, volume, page, normalizedDOI, year);
 
     } catch (error) {
@@ -65,85 +126,81 @@ async function fetchPaperMetadata(normalizedDOI) {
     }
 }
 
-
-
-
-// Function to display editable data in the form
-function displayEditableData(title, authors, journal, volume, page, doi, year) {
-    const paperInfoSection = document.getElementById('paperInfoSection');
-    paperInfoSection.style.display = 'block';  // Show the paper info section
-
-    // Populate the fields with the fetched data
-    document.getElementById('title').value = title;
-    document.getElementById('authors').value = authors;
-    document.getElementById('journal').value = journal;
-    document.getElementById('doi').value = doi;  // Set the DOI value
-
-    // Set volume, page, and year if fields exist in the HTML
-    if (document.getElementById('volume')) {
-        document.getElementById('volume').value = volume;  // Set volume
-    }
-    if (document.getElementById('page')) {
-        document.getElementById('page').value = page;  // Set page
-    }
-    if (document.getElementById('year')) {
-        document.getElementById('year').value = year;  // Set year
-    }
-
-    // Hide the DOI input section
-    const doiSection = document.getElementById("doiSection");
-    doiSection.style.display = 'none';  // Hide the DOI input section after submission
-}
-
-
-
-// Helper function to check if the URL is a valid Google Drive URL
-function isValidGoogleDriveURL(url) {
-    const googleDrivePattern = /https:\/\/drive\.google\.com\/.*(\?id=|\/file\/d\/)/;
-    return googleDrivePattern.test(url);
-}
-
-
-// Function to display an error message
 function showErrorMessage(message) {
     const errorMessageElement = document.getElementById('errorMessage');
     errorMessageElement.textContent = message;
     errorMessageElement.style.display = 'block';
 }
 
-// Function to clear the error message
 function clearErrorMessage() {
     const errorMessageElement = document.getElementById('errorMessage');
     errorMessageElement.textContent = '';
     errorMessageElement.style.display = 'none';
 }
 
+// Section 4: Submit and Copy Functions
+
+function showTick(buttonID) {
+    const tickElement = document.getElementById(buttonID + 'Tick');
+    tickElement.textContent = '✔'; // Add checkmark
+    tickElement.style.color = 'green'; // Style it green
+    tickElement.style.marginLeft = '10px';
+
+    // Remove the tick after 2 seconds
+    setTimeout(() => {
+        tickElement.textContent = '';
+    }, 2000);
+}
+
+async function submitPaper() {
+    // Get values from the form
+    const title = document.getElementById('title').value.trim();
+    const authors = document.getElementById('authors').value.trim();
+    const journal = document.getElementById('journal').value.trim();
+    const volume = document.getElementById('volume') ? document.getElementById('volume').value.trim() : 'N/A';
+    const page = document.getElementById('page') ? document.getElementById('page').value.trim() : 'N/A';
+    const year = document.getElementById('year') ? document.getElementById('year').value.trim() : 'N/A';
+    const doi = document.getElementById('doi').value.trim();
+    const pdf = document.getElementById('pdf').value.trim();
+
+    // Get the new ID from the JSON
+    const newID = await getNewID(); // Await the result of getNewID
+
+    // Create a new JSON object for the paper
+    const newPaperJSON = {
+        id: newID.toString(), // Use the awaited ID
+        authors: authors,
+        title: title,
+        pdf: pdf || "", // Default PDF placeholder
+        journal: `${journal}, (${year}), ${volume}, ${page}`,
+        doi: doi,
+        supplementary: []
+    };
+
+    // Clear the JSON output
+    const jsonOutput = document.getElementById('jsonOutput');
+    jsonOutput.value = ""; // Clear previous content
+
+    // Append the new JSON
+    const updatedJSON = JSON.stringify(newPaperJSON, null, 4); // Generate new JSON
+    jsonOutput.value = updatedJSON + ","; // Append with a trailing comma
+
+    showTick('submit');
+}
 
 
-// Handle file upload
-async function handleFileUpload() {
-    const fileInput = document.getElementById('pdfFile');
-    const file = fileInput.files[0];
 
-    if (file) {
-        const formData = new FormData();
-        formData.append('file', file);
 
-        try {
-            const response = await fetch('/NP_PDF', {
-                method: 'POST',
-                body: formData
-            });
 
-            if (response.ok) {
-                const jsonResponse = await response.json();
-                console.log('File uploaded successfully:', jsonResponse);
-                // Optionally, update the UI or store the URL to the uploaded file
-            } else {
-                console.error('File upload failed');
-            }
-        } catch (error) {
-            console.error('Error uploading file:', error);
-        }
+function copyJSON() {
+    const jsonOutput = document.getElementById('jsonOutput');
+    jsonOutput.select(); // Select the text
+    jsonOutput.setSelectionRange(0, 99999); // For mobile compatibility
+
+    try {
+        document.execCommand('copy');
+        showTick('copy'); // Show the tick for successful copy
+    } catch (error) {
+        alert('Failed to copy JSON. Please copy it manually.');
     }
 }

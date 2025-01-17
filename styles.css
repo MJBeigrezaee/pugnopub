@@ -332,3 +332,20 @@ h1 {
     text-align: center;
     width: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.tick {
+    font-size: 18px;
+    font-weight: bold;
+    visibility: visible;
+}
