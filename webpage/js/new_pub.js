@@ -1,7 +1,7 @@
 const publicationsPage = {
     async loadPublications() {
         try {
-            const response = await fetch('publications.json');
+            const response = await fetch('../publications.json');
             const data = await response.json(); // The data is now an array of paper entries
             this.renderPublications(data);
         } catch (error) {

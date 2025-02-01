@@ -1,20 +1,7 @@
-// Section 1: Helper Functions and Utility
-
-// Function to fetch the current publications from the JSON file
-async function fetchPublications() {
-    try {
-        const response = await fetch('publications.json');
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching publications:', error);
-        return [];
-    }
-}
-
 // Function to get the new ID based on the current JSON
 async function getNewID() {
     try {
-        const response = await fetch('publications.json');
+        const response = await fetch('../publications.json');
         const data = await response.json();
         const maxID = data.reduce((max, paper) => Math.max(max, parseInt(paper.id)), 0);
         return maxID + 1;
@@ -34,19 +21,12 @@ async function displayEditableData(title, authors, journal, volume, page, doi, y
     document.getElementById('authors').value = authors;
     document.getElementById('journal').value = journal;
     document.getElementById('doi').value = doi;
+    document.getElementById('volume').value = volume;
+    document.getElementById('page').value = page;
+    document.getElementById('year').value = year;
 
-    if (document.getElementById('volume')) {
-        document.getElementById('volume').value = volume;
-    }
-    if (document.getElementById('page')) {
-        document.getElementById('page').value = page;
-    }
-    if (document.getElementById('year')) {
-        document.getElementById('year').value = year;
-    }
-
-    const doiSection = document.getElementById("doiSection");
-    doiSection.style.display = 'none';
+    // const doiSection = document.getElementById("doiSection");
+    // doiSection.style.display = 'none';
 
     const newID = await getNewID();
     const newPaperJSON = {
@@ -59,7 +39,6 @@ async function displayEditableData(title, authors, journal, volume, page, doi, y
         supplementary: []
     };
 
-    const updatedJSON = JSON.stringify([newPaperJSON], null, 4);
     const jsonOutputSection = document.getElementById('jsonOutputSection');
     const jsonOutput = document.getElementById('jsonOutput');
     jsonOutput.value = JSON.stringify(newPaperJSON, null, 4) + ",";
@@ -84,7 +63,7 @@ async function checkDOI() {
     doiInput = 'https://doi.org/' + doiInput;
 
     try {
-        const response = await fetch('publications.json');
+        const response = await fetch('../publications.json');
         const data = await response.json();
 
         const existingPaper = data.find(paper => (paper.doi || '').toLowerCase().trim() === doiInput.toLowerCase().trim());
@@ -189,18 +168,122 @@ async function submitPaper() {
 }
 
 
+// Show success or failure icon with loading spinner for upload button
+function showStatusIcon(buttonID, status) {
+    const statusElement = document.getElementById(buttonID + 'Status');
+    const loadingSpinner = document.getElementById(buttonID + 'Loading');
 
+    // Hide loading spinner and remove any previous check or cross icon
+    loadingSpinner.style.display = 'none';
+    statusElement.textContent = '';
 
-
-function copyJSON() {
-    const jsonOutput = document.getElementById('jsonOutput');
-    jsonOutput.select(); // Select the text
-    jsonOutput.setSelectionRange(0, 99999); // For mobile compatibility
-
-    try {
-        document.execCommand('copy');
-        showTick('copy'); // Show the tick for successful copy
-    } catch (error) {
-        alert('Failed to copy JSON. Please copy it manually.');
+    // If status is 'loading', show the spinner
+    if (status === 'loading') {
+        loadingSpinner.style.display = 'inline-block';
+        return; // Only display the loading spinner and exit function
     }
+
+    // Show either the checkmark or crossmark depending on the status
+    if (status === 'success') {
+        statusElement.textContent = '✔ Secceed';
+        statusElement.style.color = 'green';
+    } else if (status === 'failure') {
+        statusElement.textContent = '❌ Something Wrong';
+        statusElement.style.color = 'red';
+    }
+
+    // Remove icon after 2 seconds
+    setTimeout(() => {
+        statusElement.textContent = '';
+    }, 2000);
+}
+
+// Function to handle the upload button click
+function uploadJSON() {
+    const jsonOutput = document.getElementById('jsonOutput');
+    const jsonText = jsonOutput.value.trim();
+
+    if (jsonText === "") {
+        alert("Please ensure the JSON is updated and not empty.");
+        return;
+    }
+
+    // Show the modal asking for confirmation
+    const modal = document.getElementById('uploadModal');
+    modal.style.display = "block";
+}
+
+// Close the modal when the user clicks "No"
+function cancelUpload() {
+    const modal = document.getElementById('uploadModal');
+    modal.style.display = "none";  // Close the modal
+    showStatusIcon('upload', 'failure'); // Show crossmark for failure
+    showConfirmationMessage('Upload canceled.', 'failure'); // Show failure message
+    console.log("Upload canceled.");
+}
+
+function showConfirmationMessage(message, status) {
+    const confirmationElement = document.getElementById('confirmationMessage');
+    confirmationElement.textContent = message;
+    confirmationElement.style.display = 'block';
+    confirmationElement.style.color = status === 'success' ? 'green' : 'red';
+
+    // Hide the message after 3 seconds
+    setTimeout(() => {
+        confirmationElement.style.display = 'none';
+    }, 3000);
+}
+
+
+// Proceed with the upload when the user clicks "Yes"
+function confirmUpload() {
+    const jsonOutput = document.getElementById('jsonOutput');
+    const jsonText = jsonOutput.value.trim();
+
+    const modal = document.getElementById('uploadModal');
+    modal.style.display = "none";  // Close the modal
+
+    // Show loading spinner
+    showStatusIcon('upload', 'loading'); // Show loading icon
+
+    // Proceed to upload JSON to the server
+    sendJSONToBackend(jsonText);
+}
+
+// Function to close the modal
+function closeModal() {
+    const modal = document.getElementById('uploadModal');
+    modal.style.display = "none";
+}
+
+// Function to send JSON to backend (Python server)
+function sendJSONToBackend(jsonData) {
+    console.log('Preparing to send JSON to backend:', jsonData); // Log the data being sent
+
+    fetch('http://127.0.0.1:5000/upload', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ json: jsonData })
+    })
+    .then(response => {
+        console.log('Response received from server:', response); // Log the raw response object
+        return response.json();
+    })
+    .then(data => {
+        console.log('Server responded with JSON:', data); // Log the parsed JSON response
+        if (data.status === 'success') {
+            showStatusIcon('upload', 'success');
+            showConfirmationMessage('JSON uploaded successfully!', 'success');
+        } else {
+            showStatusIcon('upload', 'failure');
+            showConfirmationMessage('Error uploading JSON.', 'failure');
+        }
+    })
+    .catch(error => {
+        console.error('Error uploading JSON:', error); // Log any errors
+        showStatusIcon('upload', 'failure');
+        showConfirmationMessage('Error uploading JSON.', 'failure');
+    });
 }

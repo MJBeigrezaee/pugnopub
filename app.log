@@ -1,0 +1,37 @@
+2025-01-19 15:47:03,227 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-19 15:47:03,229 - INFO - [33mPress CTRL+C to quit[0m
+2025-01-19 15:47:03,231 - INFO -  * Restarting with stat
+2025-01-19 15:47:03,528 - WARNING -  * Debugger is active!
+2025-01-19 15:47:03,539 - INFO -  * Debugger PIN: 683-283-846
+2025-01-19 15:47:23,194 - INFO - 127.0.0.1 - - [19/Jan/2025 15:47:23] "OPTIONS /upload HTTP/1.1" 200 -
+2025-01-19 15:47:23,197 - INFO - Received request at /upload
+2025-01-19 15:47:23,198 - DEBUG - Incoming JSON data: {'json': '{\n    "id": "685",\n    "authors": "Marco Guerrieri, Nicola Pugno",\n    "title": "ANTi-JAM solutions for smart roads: Ant-inspired traffic flow rules under CAVs environment",\n    "pdf": "",\n    "journal": "Transportation Research Interdisciplinary Perspectives, (2025), 29, 101331",\n    "doi": "https://doi.org/10.1016/j.trip.2025.101331",\n    "supplementary": []\n},'}
+2025-01-19 15:47:23,199 - INFO - New data received successfully
+2025-01-19 15:47:23,215 - ERROR - An error occurred while processing the request
+Traceback (most recent call last):
+  File "g:\My Drive\Bureaucracy\~pugno\public_html\new_pub\flask\app.py", line 82, in upload
+    upload_file()  # Call the upload function
+    ^^^^^^^^^^^^^
+  File "g:\My Drive\Bureaucracy\~pugno\public_html\new_pub\flask\app.py", line 52, in upload_file
+    json_modification() # call modification function
+    ^^^^^^^^^^^^^^^^^^^
+  File "g:\My Drive\Bureaucracy\~pugno\public_html\new_pub\flask\app.py", line 39, in json_modification
+    current_data = json.load(f)
+                   ^^^^^^^^^^^^
+  File "C:\Users\MJBeigrezaee\anaconda3\envs\main\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+                 ^^^^^^^^^
+  File "C:\Users\MJBeigrezaee\anaconda3\envs\main\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x90 in position 2284: character maps to <undefined>
+2025-01-19 15:47:23,221 - INFO - 127.0.0.1 - - [19/Jan/2025 15:47:23] "POST /upload HTTP/1.1" 200 -
+2025-01-19 15:48:34,881 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-19 15:48:34,885 - INFO - [33mPress CTRL+C to quit[0m
+2025-01-19 15:48:34,888 - INFO -  * Restarting with stat
+2025-01-19 15:48:35,225 - WARNING -  * Debugger is active!
+2025-01-19 15:48:35,239 - INFO -  * Debugger PIN: 683-283-846
+2025-01-19 15:48:48,748 - INFO -  * Detected change in 'g:\\My Drive\\Bureaucracy\\~pugno\\public_html\\new_pub\\flask\\app.py', reloading
+2025-01-19 15:48:48,791 - INFO -  * Restarting with stat

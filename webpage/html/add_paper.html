@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Paper</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Use your existing styles -->
-    <script src="add-paper.js"></script> <!-- Use your existing script file -->
+    <link rel="stylesheet" href="../styles.css"> <!-- Use your existing styles -->
+    <script src="../js/add-paper.js"></script> <!-- Use your existing script file -->
 </head>
 
 <body>
@@ -60,11 +60,25 @@
         <section id="jsonOutputSection" style="display: none;">
             <h3>Generated JSON for the New Paper</h3>
             <textarea id="jsonOutput" rows="10" cols="50"></textarea>
-            <button id="copyButton" onclick="copyJSON()">Copy</button>
-            <span id="copyTick" class="tick"></span>
+            <button id="uploadButton" onclick="uploadJSON()">Upload JSON</button>
+            <span id="uploadStatus" class="status-message"></span> <!-- For status icons -->
+            <div id="uploadLoading" class="spinner" style="display:none;"></div> <!-- For the loading spinner -->
+            <div id="confirmationMessage" class="confirmation-message" style="display:none;"></div>
+            <!-- For confirmation message -->
+
         </section>
 
-
+        <!-- Modal for confirmation -->
+        <div id="uploadModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Are you sure you want to upload this JSON file to the server?</h2>
+                <div class="modal-buttons">
+                    <button class="modal-button" onclick="confirmUpload()">Yes</button>
+                    <button class="modal-button" onclick="cancelUpload()">No</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="errorMessage" class="error-message"></div>

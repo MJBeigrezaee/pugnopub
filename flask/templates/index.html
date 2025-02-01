@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload JSON to Server</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+</head>
+<body>
+    <h1>Upload JSON File</h1>
+    
+    <button id="uploadBtn">Upload JSON</button>
+    <div id="statusMessage"></div>
+
+    <script>
+        document.getElementById('uploadBtn').addEventListener('click', async function() {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.innerHTML = "Uploading...";
+
+            try {
+                const response = await fetch('/upload', { method: 'POST' });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    statusMessage.innerHTML = `<span style="color: green;">${result.message}</span>`;
+                } else {
+                    statusMessage.innerHTML = `<span style="color: red;">${result.message}</span>`;
+                }
+            } catch (error) {
+                statusMessage.innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
+            }
+        });
+    </script>
+</body>
+</html>

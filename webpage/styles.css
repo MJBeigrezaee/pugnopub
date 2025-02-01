@@ -349,3 +349,148 @@ h1 {
     font-weight: bold;
     visibility: visible;
 }
+
+
+/* Style for checkmark, crossmark, and spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.status-message {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.checkmark {
+    color: green;
+    font-size: 24px;
+    display: inline-block;
+}
+
+.crossmark {
+    color: red;
+    font-size: 24px;
+    display: inline-block;
+}
+
+.confirmation {
+    display: inline-block;
+    margin-left: 15px;
+    font-size: 14px;
+    font-style: italic;
+    color: #555;
+}
+
+
+
+/* Style for the confirmation message */
+.confirmation-message {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #f0f8ff;
+    color: #1e90ff;
+    font-weight: bold;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Success confirmation message */
+.confirmation-message.success {
+    background-color: #d4edda;
+    color: #28a745;
+}
+
+/* Failure confirmation message */
+.confirmation-message.failure {
+    background-color: #f8d7da;
+    color: #dc3545;
+}
+
+
+
+
+/* Modal background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal buttons */
+.modal-buttons {
+    margin-top: 20px;
+}
+
+.modal-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-button:hover {
+    background-color: #45a049;
+}
+
+/* Cancel button styling */
+.modal-button:last-child {
+    background-color: #f44336; /* Red */
+}
+
+.modal-button:last-child:hover {
+    background-color: #e53935;
+}
