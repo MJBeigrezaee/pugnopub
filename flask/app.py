@@ -15,7 +15,7 @@ CORS(app)
 def json_modification():
     # Get the JSON data from the request
     incoming_data = request.get_json()
-
+    print(incoming_data)
     # Check if the 'json' key exists in the incoming data
     if 'json' not in incoming_data:
         return jsonify({'status': 'failure', 'message': 'No JSON data found'}), 400
@@ -66,7 +66,8 @@ def upload_file():
 @app.route('/upload', methods=['POST'])
 def upload():
     try:
-        upload_file()  # Call the upload function
+        json_modification() # call modification function
+        # upload_file()  # Call the upload function
         return jsonify({'status': 'success', 'message': 'JSON uploaded successfully!'}), 200
     except Exception as e:
         return jsonify({'status': 'error', 'message': f'Error: {str(e)}'})

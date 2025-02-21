@@ -258,32 +258,45 @@ function closeModal() {
 
 // Function to send JSON to backend (Python server)
 function sendJSONToBackend(jsonData) {
-    console.log('Preparing to send JSON to backend:', jsonData); // Log the data being sent
+    // Remove the trailing comma if it exists
+    jsonData = jsonData.trim();
+    if (jsonData.endsWith(',')) {
+        jsonData = jsonData.slice(0, -1);
+    }
 
-    fetch('http://127.0.0.1:5000/upload', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ json: jsonData })
-    })
-    .then(response => {
-        console.log('Response received from server:', response); // Log the raw response object
-        return response.json();
-    })
-    .then(data => {
-        console.log('Server responded with JSON:', data); // Log the parsed JSON response
-        if (data.status === 'success') {
-            showStatusIcon('upload', 'success');
-            showConfirmationMessage('JSON uploaded successfully!', 'success');
-        } else {
+    // Parse the string into a JavaScript object
+    try {
+        const paperObject = JSON.parse(jsonData);
+        
+        fetch('http://127.0.0.1:5000/upload', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ json: paperObject }) // Send the parsed object
+        })
+        .then(response => {
+            console.log('Response received from server:', response);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Server responded with JSON:', data);
+            if (data.status === 'success') {
+                showStatusIcon('upload', 'success');
+                showConfirmationMessage('JSON uploaded successfully!', 'success');
+            } else {
+                showStatusIcon('upload', 'failure');
+                showConfirmationMessage('Error uploading JSON.', 'failure');
+            }
+        })
+        .catch(error => {
+            console.error('Error uploading JSON:', error);
             showStatusIcon('upload', 'failure');
             showConfirmationMessage('Error uploading JSON.', 'failure');
-        }
-    })
-    .catch(error => {
-        console.error('Error uploading JSON:', error); // Log any errors
+        });
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
         showStatusIcon('upload', 'failure');
-        showConfirmationMessage('Error uploading JSON.', 'failure');
-    });
+        showConfirmationMessage('Invalid JSON format.', 'failure');
+    }
 }

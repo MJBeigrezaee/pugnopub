@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Your Publications</title>
+
     <!-- Link to your independent CSS -->
     <link rel="stylesheet" href="../styles.css">
+
     <!-- External Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
-
 </head>
 
 <body class="publications-page">
@@ -20,26 +19,40 @@
         <!-- Page Header -->
         <header>
             <h1>Nicola Maria Pugno</h1>
+            <!-- Independent Homepage Button -->
+            <a href="https://pugno.dicam.unitn.it/index.html">
+                <button id="homepageBtn" class="homepage-btn">Go to Homepage</button>
+            </a>
         </header>
 
-        <!-- Add Paper Button (Small + Button) -->
-        <button id="addPaperBtn" class="add-paper-btn">+</button>
-
-        <!-- Password Prompt Section (Initially Hidden) -->
-        <section class="password-section" id="passwordSection" style="display: none;">
-            <input type="password" id="passwordInput" placeholder="Enter password">
-            <button onclick="checkPassword()">Submit</button>
-            <p id="passwordError" style="color: red; display: none;">Incorrect password, try again!</p>
-        </section>
+        <input type="text" id="searchBar" placeholder="Search by title, author, or journal..."
+            oninput="publicationsPage.filterPublications()">
 
 
 
-        <!-- Publications Sections -->
-        <section id="journalPublications">
-            <h2>Journal Publications</h2>
-            <button id="showMoreJournals" onclick="showMore('journal')">Show More</button>
-            <ul id="journalList"></ul>
-        </section>
+        <main>
+            <!-- Add Paper Button -->
+            <button id="addPaperBtn" class="add-paper-btn">+</button>
+
+            <!-- Password Prompt Section (Initially Hidden) -->
+            <section class="password-section" id="passwordSection" style="display: none;">
+                <input type="password" id="passwordInput" placeholder="Enter password">
+                <button onclick="checkPassword()">Submit</button>
+                <p id="passwordError" style="color: red; display: none;">Incorrect password, try again!</p>
+            </section>
+
+            <!-- Publications Sections -->
+            <section id="inPressPublications">
+                <h2>In Press</h2>
+                <ul id="inPressList"></ul>
+            </section>
+
+            <section id="publishedPublications">
+                <h2>Published</h2>
+                <button id="showMorePublished" onclick="showMore('published')">Show More</button>
+                <ul id="publishedList"></ul>
+            </section>
+        </main>
     </div>
 
     <script src="../js/new_pub.js"></script>

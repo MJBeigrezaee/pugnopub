@@ -3,41 +3,95 @@ const publicationsPage = {
         try {
             const response = await fetch('../publications.json');
             const data = await response.json(); // The data is now an array of paper entries
+            this.publications = data; // Store for filtering later
             this.renderPublications(data);
         } catch (error) {
             console.error('Error loading publications:', error);
         }
     },
 
+    filterPublications() {
+        const searchTerm = document.getElementById("searchBar").value.toLowerCase();
+    
+        const filteredData = this.publications.filter(publication => {
+            return publication.title.toLowerCase().includes(searchTerm) ||
+                   publication.authors.toLowerCase().includes(searchTerm) ||
+                   publication.journal.toLowerCase().includes(searchTerm);
+        });
+    
+        this.renderPublications(filteredData);
+    },
+    
+    
+
     renderPublications(data) {
-        const journalList = document.getElementById("journalList");
-    
-        // Render each publication directly from the data array
-        data.forEach((publication, index) => {
-            this.createPublicationListItem(journalList, publication, index, data.length);
-        });
-    
-        // Initialize the "Show More" buttons
-        this.initializeShowMore();
-    },
-   
-    initializeShowMore() {
-        const showMoreButton = document.getElementById("showMoreJournals");
-        const allItems = document.querySelectorAll("#journalList .publication-item");
+        // Sort by year (descending), then by ID (descending)
+        data.sort((a, b) => {
+            const yearA = a.journal.match(/\((\d{4})\)/) ? parseInt(a.journal.match(/\((\d{4})\)/)[1]) : 0;
+            const yearB = b.journal.match(/\((\d{4})\)/) ? parseInt(b.journal.match(/\((\d{4})\)/)[1]) : 0;
 
-        // Initially hide all but the first 5 items
-        allItems.forEach((item, index) => {
-            if (index >= 5) {
-                item.style.display = 'none';
+            if (yearB !== yearA) {
+                return yearB - yearA; // Sort by year descending
             }
+            return b.id - a.id; // If same year, sort by ID descending
         });
 
-        // Set the "Show More" functionality
-        showMoreButton.textContent = 'Show More';
-        showMoreButton.onclick = () => this.loadAllItems();
+        // Clear and render sorted publications
+        const publishedList = document.getElementById("publishedList");
+        const inPressList = document.getElementById("inPressList");
+
+        // Clear both lists
+        publishedList.innerHTML = "";
+        inPressList.innerHTML = "";
+
+        const publishedPapers = data.filter(pub => {
+            const yearMatch = pub.journal.match(/\((\d{4})\)/); // Extract year in format (YYYY)
+            return yearMatch ? true : false;  // If year exists, it's a published paper
+        });
+        const inPressPapers = data.filter(pub => {
+            const yearMatch = pub.journal.match(/\((\d{4})\)/); // Try to match the year pattern
+            return !yearMatch; // If no year, it's "In Press"
+        });
+
+        // Render Published Papers
+        publishedPapers.forEach((publication, index) => {
+            this.createPublicationListItem(publishedList, publication, index, publishedPapers.length, 'published');
+        });
+
+        // Render In Press Papers
+        inPressPapers.forEach((publication, index) => {
+            this.createPublicationListItem(inPressList, publication, index, inPressPapers.length, 'in-press');
+        });
+
+        // Initialize the "Show More" buttons
+        this.initializeShowMore('publishedList', 'showMorePublished');
+        this.initializeShowMore('inPressList', 'showMoreInPress');
     },
 
-    createPublicationListItem(list, publication, index, totalItems) {
+    renderList(data, listElement, showMoreBtnId) {
+        data.forEach((publication, index) => {
+            this.createPublicationListItem(listElement, publication, index, data.length);
+        });
+
+        // Initialize "Show More" for this list
+        this.initializeShowMore(listElement.id, showMoreBtnId);
+    },
+
+    initializeShowMore(listId, buttonId) {
+        const showMoreButton = document.getElementById(buttonId);
+        if (!showMoreButton) {
+            console.warn(`Button with id "${buttonId}" not found.`);
+            return; // Exit if the button isn't found
+        }
+        const allItems = document.querySelectorAll(`#${listId} .publication-item`);
+        allItems.forEach((item, index) => {
+            if (index >= 5) item.style.display = 'none';
+        });
+        showMoreButton.textContent = 'Show More';
+        showMoreButton.onclick = () => this.loadAllItems(listId, buttonId);
+    },
+
+    createPublicationListItem(list, publication, index, totalItems, category) {
         const reversedNumber = totalItems - index;
         const li = document.createElement("li");
         li.classList.add("publication-item");
@@ -48,13 +102,20 @@ const publicationsPage = {
             }
             return author;
         }).join(', ');
-
+    
+        let publicationNumber = '';
+        if (category !== 'in-press') {
+            publicationNumber = `<span class="publication-number">${reversedNumber}.</span>`;
+        } else {
+            publicationNumber = `<span class="publication-bullet">•</span>`;
+        }
+    
         li.innerHTML = `
-            <span class="publication-number">${reversedNumber}.</span> 
+            ${publicationNumber} 
             <a href="#" class="publication-title">${publication.title}</a>
             
-            <button class="details-btn" onclick="publicationsPage.toggleDetails(${index})">+</button>
-            <div class="publication-details" id="publication-${index}">
+            <button class="details-btn" onclick="publicationsPage.toggleDetails(${index}, '${category}')">+</button>
+            <div class="publication-details" id="publication-${category}-${index}">
                 <p><strong>Authors:</strong> ${authors}</p>
                 <p><strong>Journal:</strong> ${publication.journal}</p>
                 <p><strong>DOI:</strong> <a href="${publication.doi}" target="_blank">${publication.doi}</a></p>
@@ -65,16 +126,15 @@ const publicationsPage = {
         list.appendChild(li);
     },
 
+
     renderSupplementaryData(supplementaryData, pdf) {
         let supplementaryHTML = '';
 
-        // Add the main paper PDF link if it exists
         if (pdf && pdf.trim() !== "") {
             supplementaryHTML += `<p><a href="${pdf}" target="_blank">Original Paper</a></p>`;
         }
 
-        // Display supplementary data
-        if (supplementaryData && supplementaryData.length > 0) {
+        if (supplementaryData.length > 0) {
             supplementaryHTML += `<p><strong>Supplementary Data:</strong></p>`;
             supplementaryData.forEach((item, index) => {
                 const type = item.type || `Supplementary ${index + 1}`;
@@ -86,9 +146,10 @@ const publicationsPage = {
         return supplementaryHTML;
     },
 
-    toggleDetails(index) {
-        const detailsElement = document.getElementById(`publication-${index}`);
+    toggleDetails(index, category) {
+        const detailsElement = document.getElementById(`publication-${category}-${index}`);
         const button = event.target;
+    
         if (detailsElement.style.display === 'block') {
             detailsElement.style.display = 'none';
             button.textContent = '+';
@@ -98,58 +159,53 @@ const publicationsPage = {
         }
     },
 
-    loadAllItems() {
-        const allItems = document.querySelectorAll("#journalList .publication-item");
-        const showMoreButton = document.getElementById("showMoreJournals");
+    loadAllItems(listId, buttonId) {
+        const allItems = document.querySelectorAll(`#${listId} .publication-item`);
+        const showMoreButton = document.getElementById(buttonId);
 
-        // Show all items
         allItems.forEach(item => item.style.display = 'block');
 
         showMoreButton.textContent = 'Show Less';
-        showMoreButton.onclick = () => this.showLess();
+        showMoreButton.onclick = () => this.showLess(listId, buttonId);
     },
 
-    showLess() {
-        const allItems = document.querySelectorAll("#journalList .publication-item");
-        const showMoreButton = document.getElementById("showMoreJournals");
+    showLess(listId, buttonId) {
+        const allItems = document.querySelectorAll(`#${listId} .publication-item`);
+        const showMoreButton = document.getElementById(buttonId);
 
         allItems.forEach((item, index) => {
-            if (index >= 5) {
-                item.style.display = 'none'; // Hide publications after the 5th one
-            }
+            if (index >= 5) item.style.display = 'none';
         });
 
         showMoreButton.textContent = 'Show More';
-        showMoreButton.onclick = () => this.loadAllItems();
+        showMoreButton.onclick = () => this.loadAllItems(listId, buttonId);
     }
 };
 
-// Predefined password (set your password here)
-const correctPassword = "6165";  // Replace with your actual password
+// Password protection for adding a paper
+const correctPassword = "6165";
 
-// Function to show the password prompt
-document.getElementById("addPaperBtn").onclick = function() {
+document.getElementById("addPaperBtn").onclick = function () {
     document.getElementById("passwordSection").style.display = 'block';
 };
 
-// Function to check the password and redirect to add paper page
 function checkPassword() {
     const passwordInput = document.getElementById("passwordInput").value;
     const passwordError = document.getElementById("passwordError");
 
     if (passwordInput === correctPassword) {
-        // Hide the password prompt
         document.getElementById("passwordSection").style.display = 'none';
-        
-        // Redirect to the "Add Paper" page (you can modify the URL if needed)
-        window.location.href = "add_paper.html";  // Update this to the actual URL of the "Add Paper" page
+        window.location.href = "add_paper.html";
     } else {
-        // Show error message if password is incorrect
         passwordError.style.display = 'block';
     }
 }
 
-
+document.getElementById('passwordInput').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        checkPassword();
+    }
+});
 
 // Initialize publications on page load
 window.onload = () => publicationsPage.loadPublications();

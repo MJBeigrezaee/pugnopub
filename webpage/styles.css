@@ -494,3 +494,34 @@ h1 {
 .modal-button:last-child:hover {
     background-color: #e53935;
 }
+
+
+
+.homepage-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.homepage-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+#search-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#searchBar {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
