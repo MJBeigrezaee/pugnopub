@@ -16,6 +16,7 @@ const publicationsPage = {
         const filteredData = this.publications.filter(publication => {
             return publication.title.toLowerCase().includes(searchTerm) ||
                    publication.authors.toLowerCase().includes(searchTerm) ||
+                   publication.doi.toLowerCase().includes(searchTerm) ||
                    publication.journal.toLowerCase().includes(searchTerm);
         });
     

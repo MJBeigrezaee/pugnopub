@@ -13,7 +13,7 @@ async function getNewID() {
 
 // Section 2: Display Editable Data in the Form
 
-async function displayEditableData(title, authors, journal, volume, page, doi, year) {
+async function displayEditableData(title, authors, journal, volume, page, doi, year, previousID) {
     const paperInfoSection = document.getElementById('paperInfoSection');
     paperInfoSection.style.display = 'block';
 
@@ -25,25 +25,28 @@ async function displayEditableData(title, authors, journal, volume, page, doi, y
     document.getElementById('page').value = page;
     document.getElementById('year').value = year;
 
-    // const doiSection = document.getElementById("doiSection");
-    // doiSection.style.display = 'none';
-
     const newID = await getNewID();
     const newPaperJSON = {
         id: newID.toString(),
         authors: authors,
         title: title,
         pdf: "",
-        journal: `${journal}, (${year}), ${volume}, ${page}`,
+        journal: `${journal}${year ? `, (${year})` : ''}${volume ? `, ${volume}` : ''}${page ? `, ${page}` : ''}`,
         doi: doi,
-        supplementary: []
+        supplementary: [],
+        status: year ? "published" : "in press"
     };
+
+    if (previousID) {
+        newPaperJSON.previous_id = previousID; // Link to the in press version
+    }
 
     const jsonOutputSection = document.getElementById('jsonOutputSection');
     const jsonOutput = document.getElementById('jsonOutput');
     jsonOutput.value = JSON.stringify(newPaperJSON, null, 4) + ",";
     jsonOutputSection.style.display = 'block';
 }
+
 
 // Section 3: Validation, Metadata Fetching, and Error Handling
 
@@ -69,10 +72,16 @@ async function checkDOI() {
         const existingPaper = data.find(paper => (paper.doi || '').toLowerCase().trim() === doiInput.toLowerCase().trim());
 
         if (existingPaper) {
-            showErrorMessage('This paper already exists in the database.');
+            if (existingPaper.status === "in press") {
+                // Allow update: create a new published version with a new ID
+                clearErrorMessage();
+                await fetchPaperMetadata(doiInput, existingPaper.id);
+            } else {
+                showErrorMessage('This paper already exists in the database.');
+            }
         } else {
             clearErrorMessage();
-            await fetchPaperMetadata(doiInput);
+            await fetchPaperMetadata(doiInput, null); // No existing ID, treat as new
         }
     } catch (error) {
         console.error('Error checking DOI:', error);
@@ -80,7 +89,8 @@ async function checkDOI() {
     }
 }
 
-async function fetchPaperMetadata(normalizedDOI) {
+
+async function fetchPaperMetadata(normalizedDOI, existingID) {
     try {
         const response = await fetch(`https://api.crossref.org/works/${normalizedDOI}`);
         if (!response.ok) throw new Error('Failed to fetch data from CrossRef');
@@ -93,17 +103,18 @@ async function fetchPaperMetadata(normalizedDOI) {
             ? message.author.map(author => `${author.given} ${author.family}`).join(', ')
             : 'N/A';
         const journal = message['container-title'] ? message['container-title'][0] : 'N/A';
-        const volume = message.volume || 'N/A';
-        const page = message.page || 'N/A';
-        const year = message.created ? message.created['date-parts'][0][0] : 'N/A';
+        const volume = message.volume || '';
+        const page = message.page || '';
+        const year = message.created ? message.created['date-parts'][0][0] : '';
 
-        displayEditableData(title, authors, journal, volume, page, normalizedDOI, year);
+        displayEditableData(title, authors, journal, volume, page, normalizedDOI, year, existingID);
 
     } catch (error) {
         console.error('Error fetching metadata:', error);
         showErrorMessage('Unable to fetch paper metadata from CrossRef.');
     }
 }
+
 
 function showErrorMessage(message) {
     const errorMessageElement = document.getElementById('errorMessage');
@@ -132,40 +143,50 @@ function showTick(buttonID) {
 }
 
 async function submitPaper() {
-    // Get values from the form
     const title = document.getElementById('title').value.trim();
     const authors = document.getElementById('authors').value.trim();
     const journal = document.getElementById('journal').value.trim();
-    const volume = document.getElementById('volume') ? document.getElementById('volume').value.trim() : 'N/A';
-    const page = document.getElementById('page') ? document.getElementById('page').value.trim() : 'N/A';
-    const year = document.getElementById('year') ? document.getElementById('year').value.trim() : 'N/A';
     const doi = document.getElementById('doi').value.trim();
-    const pdf = document.getElementById('pdf').value.trim();
+    const volume = document.getElementById('volume').value.trim();
+    const page = document.getElementById('page').value.trim();
+    const year = document.getElementById('year').value.trim();
+    const previousID = document.getElementById('previousID')?.value.trim() || null;
 
-    // Get the new ID from the JSON
-    const newID = await getNewID(); // Await the result of getNewID
+    if (!title || !authors || !journal || !doi) {
+        showErrorMessage('Title, authors, journal, and DOI are required.');
+        return;
+    }
 
-    // Create a new JSON object for the paper
+    // Determine the status based on the presence of year, volume, and page
+    const status = (!year && !volume && !page) ? "in press" : "published";
+
+    const newID = await getNewID();
     const newPaperJSON = {
-        id: newID.toString(), // Use the awaited ID
+        id: newID.toString(),
         authors: authors,
         title: title,
-        pdf: pdf || "", // Default PDF placeholder
-        journal: `${journal}, (${year}), ${volume}, ${page}`,
+        pdf: "",
+        journal: `${journal}${year ? `, (${year})` : ''}${volume ? `, ${volume}` : ''}${page ? `, ${page}` : ''}`,
         doi: doi,
-        supplementary: []
+        supplementary: [],
+        status: status
     };
 
-    // Clear the JSON output
-    const jsonOutput = document.getElementById('jsonOutput');
-    jsonOutput.value = ""; // Clear previous content
+    if (previousID) {
+        newPaperJSON.previous_id = previousID; // Link to the previous in-press version
+    }
 
-    // Append the new JSON
-    const updatedJSON = JSON.stringify(newPaperJSON, null, 4); // Generate new JSON
-    jsonOutput.value = updatedJSON + ","; // Append with a trailing comma
+    // Display JSON output
+    const jsonOutputSection = document.getElementById('jsonOutputSection');
+    const jsonOutput = document.getElementById('jsonOutput');
+    jsonOutput.value = JSON.stringify(newPaperJSON, null, 4) + ",";
+    jsonOutputSection.style.display = 'block';
 
     showTick('submit');
+    clearErrorMessage();
 }
+
+
 
 
 // Show success or failure icon with loading spinner for upload button

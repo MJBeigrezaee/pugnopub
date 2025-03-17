@@ -41,24 +41,6 @@
         "supplementary": []
     },
     {
-        "id": "680",
-        "authors": "N. M. Pugno M",
-        "title": "Super\u2010Tough Silk: The Potential of Knots in Evolved Spiders",
-        "journal": "Advanced Functional Materials, (2025)",
-        "doi": "https://doi.org/10.1002/adfm.202421636",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "679",
-        "authors": "Kashyap, Vivek and {Di Novo}, Nicol{\\`{o}} Giuseppe and N. M. Pugno",
-        "title": "FRICTIONAL ANISOTROPY OF ANT LEGS AND RELATED INSPIRED 3D-PRINTED TEXTURED SURFACES WITH SELF-LOCOMOTION ON ULTRASOUND VIBRATING SUBSTRATES",
-        "journal": "Tribology International, (2025), 110513",
-        "doi": "https://doi.org/10.1016/j.triboint.2025.110513",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
         "id": "678",
         "authors": "P.H. Beoletto, F. Nistri, A.S. Gliozzi,N. M. Pugno, F. Bosia",
         "title": "Thin-lens equation in elasticity: Imaging with gradient-index phononic crystals",
@@ -544,84 +526,12 @@
         "supplementary": []
     },
     {
-        "id": "644",
-        "authors": "Parisi, Mariafederica and {La Fauci}, Giuseppe and Colombo, Daniel and Ferri, Ada and Dotti, Francesca and Bianca, Eleonora and N. M. Pugno and Colonna, Martino",
-        "title": "Development and Testing of Auxetic Shoulder Straps for Sport Backpacks",
-        "journal": "Lecture Notes in Mechanical Engineering, (2024), 119-126",
-        "doi": "https://doi.org/10.1007/978-3-031-58094-9_14",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "643",
-        "authors": "La Fauci}, Giuseppe and Parisi, Mariafederica and Nanni, Alessandro and Crosetta, Lorenzo and N. M. Pugno and Colonna, Martin",
-        "title": "Design of an Advanced System for Motorbike Helmets Able to Dissipate Rotational Accelerations Caused by Tangential Impacts",
-        "journal": "Lecture Notes in Mechanical Engineering, (2024), 111-118",
-        "doi": "https://doi.org/10.1007/978-3-031-58094-9_13",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "642",
-        "authors": "Chen, Heming and Wang, Dong and Li, Jiayi and Yao, Qingqiang and N. M. Pugno and Li, Zhiyong and Chen, Qiang",
-        "title": "A simple projection method to correlate the principal mechanical direction with the principal microstructural direction of human osteoporotic femoral heads",
-        "journal": "Medical and Biological Engineering and Computing, (2024)",
-        "doi": "https://doi.org/10.1007/s11517-024-03162-4",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "641",
-        "authors": "Greco, Gabriele and Schmuck, Benjamin and Fazio, Vincenzo and Puglisi, Giuseppe and Florio, Giuseppe and N. M. Pugno and Fambri, Luca and Rising, Anna",
-        "title": "Temperature-Induced Effects on Wet-Spun Artificial Spider Silk Fibers",
-        "journal": "Advanced Functional Materials, (2024), 2418435",
-        "doi": "https://doi.org/10.1002/adfm.202418435",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "640",
-        "authors": "Kundu, Anirban and Jalali, Seyed Kamal and Kim, Minhyeok and Wang, Meihui and Luo, Da and Lee, Sun Hwa and N. M. Pugno M and Seong, Won Kyung and Ruoff, Rodney S.",
-        "title": "Unprecedented Strength in Centimeter-Scale Single-Crystal Monolayer Graphene",
-        "journal": ", (2024)",
-        "doi": "https://doi.org/10.21203/rs.3.rs-5223363/v1",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "639",
-        "authors": "Fazio, Vincenzo and Malay, Ali D. and Numata, Keiji and N. M. Pugno and Puglisi, Giuseppe",
-        "title": "A Physically-Based Machine Learning Approach Inspires an Analytical Model for Spider Silk Supercontraction",
-        "journal": "Advanced Functional Materials, (2024), 2420095",
-        "doi": "https://doi.org/10.1002/adfm.202420095",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "638",
-        "authors": "Dzinovic, Eda and Clark, Lauren and Keyhani, Niktash and {Al Morhiby}, Nora and Byford, Paul and Wang, Siyang and Gamea, Sara and Chu, Kenneth and Wnuk, Elizabeth and Liu, Yu and Rosik, Nicole and Giuliani, Finn and N. M. Pugno and Zhang, Zhenyu J. and Addison, Owen and Elsharkawy, Sherif",
-        "title": "Bioinspired Physico-Chemical Surface Modifications for the Development of Advanced Retentive Systems",
-        "journal": "Advanced Materials Technologies, (2024), 2400928",
-        "doi": "https://doi.org/10.1002/admt.202400928",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
         "id": "637",
-        "authors": "Bagolini, Alvise and {Di Novo}, Nicol{\\`{o}} G. and Pedrotti, Severino and Valt, Matteo and Collini, Cristian and N. M. Pugno and Lorenzelli, Leandro",
+        "authors": "A. Bagolini, N. G. Di Novo, S. Pedrotti, M. Valt, C. Collini, N. M. Pugno, L. Lorenzelli",
         "title": "Beveled microneedles with channel for transdermal injection and sampling, fabricated with minimal steps and standard MEMS technology",
         "journal": "Lab on a Chip, (2024)",
         "doi": "https://doi.org/10.1039/d4lc00880d",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "636",
-        "authors": "Binetti, Claudia and Florio, Giuseppe and N. M. Pugno and Giordano, Stefano and Puglisi, Giuseppe",
-        "title": "Thermal Fluctuations Effects on Crack Nucleation and Propagation",
-        "journal": ", (2024)",
-        "doi": "https://doi.org/10.2139/ssrn.5019026",
-        "pdf": "",
+        "pdf": "https://drive.google.com/open?id=1R7Fyp1TpZPWqdySXA59fPHHdSUcahTxg&usp=drive_fs",
         "supplementary": []
     },
     {
@@ -1188,33 +1098,6 @@
         "supplementary": []
     },
     {
-        "id": "596",
-        "authors": "Cecchini, Luca and Mariani, Stefano and N. M. Pugno and Mazzolai, Barbara",
-        "title": "Bioinspired Soft Actuator Based on Photothermal Expansion of Biodegradable Polymers",
-        "journal": "Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics), (2023), 14157 LNAI, 156-164",
-        "doi": "https://doi.org/10.1007/978-3-031-38857-6_12",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "595",
-        "authors": "Sten, Oscar and {Del Dottore}, Emanuela and Raffaele, Giulia and Ronzan, Marilena and N. M. Pugno and Mazzolai, Barbara",
-        "title": "Sporify: An Automated Tool to Quantify Spores in Z-Stacked 3D Samples",
-        "journal": "Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics), (2023), 14158 LNAI, 178-192",
-        "doi": "https://doi.org/10.1007/978-3-031-39504-8_12",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "594",
-        "authors": "Jalali, S. Kamal and N. M. Pugno",
-        "title": "Enhanced Composite Design Through Incorporation of Tribological Considerations in Micromechanical Models",
-        "journal": ", (2023), 57-63",
-        "doi": "https://doi.org/10.1109/STAR58331.2023.10302653",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
         "id": "593",
         "authors": "M. Lott, V. F. Dal Poggetto, G. Greco,N. M. Pugno, F. Bosia",
         "title": "Author Correction: Prey localization in spider orb webs using modal vibration analysis",
@@ -1738,15 +1621,6 @@
                 "file": "NP_PDF/PostPrint/535-JOTRI-Experimental_and_numerical_study.pdf"
             }
         ]
-    },
-    {
-        "id": "552",
-        "authors": "Sasso, G. and Carpi, F. and Pugno, N. and Busfield, J.J.C.",
-        "title": "Fluid mixer with two degrees of freedom enabled by dielectric elastomer actuators",
-        "journal": "Constitutive Models for Rubber XII, (2022), 504-507",
-        "doi": "https://doi.org/10.1201/9781003310266-82",
-        "pdf": "",
-        "supplementary": []
     },
     {
         "id": "551",
@@ -2434,18 +2308,9 @@
     {
         "id": "501",
         "authors": "Lauro, Enrico and Corridori, Ilaria and Luciani, Lorenzo and Leo, Alberto\u00a0Di and Sartori, Alberto and Andreuccetti, Jacopo and Scudo, Giovanni and Motta, Antonella and N. M. Pugno",
-        "title": "O08 Biomechanics of Manual, Stapled, and Manual-Stapled Sutures on Fascia Lata. Tips for Abdominal Wall Surgeons",
+        "title": "Biomechanics of Manual, Stapled, and Manual-Stapled Sutures on Fascia Lata. Tips for Abdominal Wall Surgeons",
         "journal": "British Journal of Surgery, (2021), 108",
         "doi": "https://doi.org/10.1093/bjs/znab396.007",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "500",
-        "authors": "Jalali, Seyedkamal and Yekta, Amir and N. M. Pugno",
-        "title": "Mechanical properties of the cellular structures based on the isotruss unit cell{\\textregistered}",
-        "journal": ", (2021), 500",
-        "doi": "https://doi.org/10.23967/wccm-eccomas.2020.195",
         "pdf": "",
         "supplementary": []
     },
@@ -3462,42 +3327,6 @@
                 "file": "movies_backup/402_video2.mp4"
             }
         ]
-    },
-    {
-        "id": "415",
-        "authors": "Cutolo, A. and Carotenuto, A. R. and Carannante, F. and Pugno, N. and Fraldi, M.",
-        "title": "Analytical solutions for monoclinic/trigonal structures replicating multi-wall carbon nano-tubes for applications in composites with elastomeric/polymeric matrix",
-        "journal": "High-Performance Elastomeric Materials Reinforced by Nano-Carbons: Multifunctional Properties and Industrial Applications, (2019), 193-134",
-        "doi": "https://doi.org/10.1016/B978-0-12-816198-2.00009-8",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "414",
-        "authors": "Valentini, Luca and N. M. Pugno",
-        "title": "Bionic superfibers",
-        "journal": "Nanotube Superfiber Materials: Science, Manufacturing, Commercialization, (2019), 431-443",
-        "doi": "https://doi.org/10.1016/B978-0-12-812667-7.00017-3",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "413",
-        "authors": "Preti, Lorenzo and Lambiase, Barbara and Campodoni, Elisabetta and Sandri, Monica and Ruffini, Andrea and N. M. Pugno and Tampieri, Anna and Sprio, Simone",
-        "title": "Nature-Inspired Processes and Structures: New Paradigms to Develop Highly Bioactive Devices for Hard Tissue Regeneration",
-        "journal": "Bio-Inspired Technology [Working Title], (2019)",
-        "doi": "https://doi.org/10.5772/intechopen.82740",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "412",
-        "authors": "Kundanati, Lakshminath and N. M. Pugno",
-        "title": "Advances in the Processing and Fabrication of Bioinspired Materials and Implications by Way of Applications",
-        "journal": "Manufacturing Techniques for Materials, (2019), 161-188",
-        "doi": "https://doi.org/10.1201/b22313-6",
-        "pdf": "",
-        "supplementary": []
     },
     {
         "id": "411",
@@ -4711,15 +4540,6 @@
         ]
     },
     {
-        "id": "325",
-        "authors": "Brely, Lucas and Liprandi, Daniele and Bosia, Federico and N. M. Pugno",
-        "title": "Optimal Adhesion Control via Cooperative Hierarchy, Grading, Geometries and Non-linearity of Anchorages and Adhesive Pads",
-        "journal": "Bio-inspired Structured {\\ldots}, (2017), 81-93",
-        "doi": "https://doi.org/10.1007/978-3-319-59114-8_6",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
         "id": "324",
         "authors": "G. Costagliola, F. Bosia,N. M. Pugno",
         "title": "Static and dynamic friction of hierarchical surfaces",
@@ -5190,24 +5010,6 @@
         "pdf": "NP_PDF/272-IF16-knots.pdf",
         "journal": "INTERFACE FOCUS (2016), 6, 20150160",
         "doi": "https://doi.org/10.1098/rsfs.2015.0060",
-        "supplementary": []
-    },
-    {
-        "id": "280",
-        "authors": "Miniaci, Marco and Krushynska, Anastasiia and Bosia, Federico and Gliozzi, Antonio and Scalerandi, Marco and Morvan, Bruno and N. M. Pugno",
-        "title": "Nonlinear damage detection and localization via an innovative metamaterial-based sensor",
-        "journal": "Journal of the Acoustical Society of America, (2016), 139, 2013-2013",
-        "doi": "https://doi.org/10.1121/1.4949924",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "279",
-        "authors": "Roman, Ruth E. and N. M. Pugno and Cranford, Steven W.",
-        "title": "Mechanical Characterization of 2D Nanomaterials and Composites",
-        "journal": "Advanced Computational Nanomechanics, (2016), 201-242",
-        "doi": "https://doi.org/10.1002/9781119068921.ch8",
-        "pdf": "",
         "supplementary": []
     },
     {
@@ -5721,24 +5523,6 @@
         "pdf": "NP_PDF/218-JAM14-nanoscrolls.pdf",
         "journal": "JOURNAL OF APPLIED MECHANICS (2014), 81, 021016/1-6",
         "doi": "https://doi.org/10.1115/1.4024418",
-        "supplementary": []
-    },
-    {
-        "id": "224",
-        "authors": "Lepore, Emiliano and N. M. Pugno",
-        "title": "An experimental study on adhesive or anti-adhesive, bio-inspired experimental nanomaterials",
-        "journal": "An Experimental Study on Adhesive or Anti-adhesive, Bio-inspired Experimental Nanomaterials, (2014), 9788376560823, 1-176",
-        "doi": "https://doi.org/10.2478/9788376560823",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "223",
-        "authors": "Cranford, Steven W. and N. M. Pugno and Buehler, Markus J.",
-        "title": "Silk and Web Synergy: The Merging of Material and Structural Performance",
-        "journal": "Biotechnology of Silk, (2014), 219-268",
-        "doi": "https://doi.org/10.1007/978-94-007-7119-2_12",
-        "pdf": "",
         "supplementary": []
     },
     {
@@ -6350,33 +6134,6 @@
         "supplementary": []
     },
     {
-        "id": "157",
-        "authors": "N. M. Pugno",
-        "title": "Nanotribology of Spiderman",
-        "journal": "Physical Properties of Ceramic and Carbon Nanoscale Structures, (2011), 111-136",
-        "doi": "https://doi.org/10.1007/978-3-642-15778-3_3",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "156",
-        "authors": "N. M. Pugno and Cathcart, Richard B. and Bolonkin, Alexander",
-        "title": "Sea Art: The Mediterranean Sea Terrace Proposal",
-        "journal": "Engineering Earth, (2011), 1441-1447",
-        "doi": "https://doi.org/10.1007/978-90-481-9920-4_81",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
-        "id": "155",
-        "authors": "N. M. Pugno and Cathcart, Richard B. and Friedlander, Joseph J.",
-        "title": "Treeing the CATS: Artificial Gulf Formation by the Chotts Algeria\u2013Tunisia Scheme",
-        "journal": "Environmental Science and Engineering, (2011), 489-517",
-        "doi": "https://doi.org/10.1007/978-3-642-14779-1_22",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
         "id": "154",
         "authors": "N. M. Pugno, M. Klettner,",
         "title": "Super-strong nanotube cables: A breakthrough during the 3rd International Conference on \"Space Elevator, Carbon Nanotube Tether Design and Lunar Industrialization Challenges\"",
@@ -6515,7 +6272,7 @@
         "id": "139",
         "authors": "N. M. Pugno",
         "title": "Self-Buckling at the Nanoscale",
-        "journal": "5th FORUM ON NEW MATERIALS PART E, (2010), 76, 147-152",
+        "journal": "Advances in Science and Technology, (2010), 76, 147-152",
         "doi": "https://doi.org/10.4028/www.scientific.net/ast.76.147",
         "pdf": "",
         "supplementary": []
@@ -6524,7 +6281,7 @@
         "id": "138",
         "authors": "N. M. Pugno and Chen, Qiang",
         "title": "Modeling the Elastic Anisotropy of Woven Hierarchical Tissues: Experimental Comparison on Biological Materials and Design of a New Class of Scaffolds",
-        "journal": "5th FORUM ON NEW MATERIALS PART E, (2010), 76, 153-158",
+        "journal": "Advances in Science and Technology, (2010), 76, 153-158",
         "doi": "https://doi.org/10.4028/www.scientific.net/ast.76.153",
         "pdf": "",
         "supplementary": []
@@ -6533,7 +6290,7 @@
         "id": "137",
         "authors": "N. M. Pugno and Abdalrahman, Tamer",
         "title": "Catastrophic Instabilities in the Fracture of Nanotube Bundles",
-        "journal": "5th FORUM ON NEW MATERIALS PART E, (2010), 76, 159-164",
+        "journal": "Advances in Science and Technology, (2010), 76, 159-164",
         "doi": "https://doi.org/10.4028/www.scientific.net/ast.76.159",
         "pdf": "",
         "supplementary": []
@@ -6989,15 +6746,6 @@
         "supplementary": []
     },
     {
-        "id": "86",
-        "authors": "Calabri, Lorenzo and N. M. Pugno and Valeri, Sergio",
-        "title": "AFM Nanoindentation Method: Geometrical Effects of the Indenter Tip",
-        "journal": "Applied Scanning Probe Methods XI, (2008), 139-164",
-        "doi": "https://doi.org/10.1007/978-3-540-85037-3_6",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
         "id": "85",
         "authors": "A. CARPINTERI;N. M. Pugno; S. PUZZI,",
         "title": "Strength vs. toughness optimization of micro- and nano-structured grained composites",
@@ -7385,15 +7133,6 @@
         "supplementary": []
     },
     {
-        "id": "42",
-        "authors": "Carpinteri, Alberto and N. M. Pugno",
-        "title": "Universality in Nonlinear Structural Dynamics",
-        "journal": "Universality of Nonclassical Nonlinearity, (2006), 91-99",
-        "doi": "https://doi.org/10.1007/978-0-387-35851-2_6",
-        "pdf": "",
-        "supplementary": []
-    },
-    {
         "id": "41",
         "authors": "CARPINTERI; G. LACIDOGNA;N. M. Pugno,",
         "title": "Time-scale effects on acoustic emission due to elastic waves propagation in monitored cracking structures",
@@ -7769,29 +7508,102 @@
     },
     {
         "id": "685",
-        "authors": "Marco Guerrieri, Nicola Pugno",
-        "title": "ANTi-JAM solutions for smart roads: Ant-inspired traffic flow rules under CAVs environment",
+        "authors": "V. Diniz, N. M. Pugno, S. Rath, C. R. Crick",
+        "title": "The Fabrication of Fluorine\u2010Free Stretchable Superhydrophobic Films Using Inverse Vulcanization Sulfur Polymer",
         "pdf": "",
-        "journal": "Transportation Research Interdisciplinary Perspectives, (2025), 29, 101331",
-        "doi": "https://doi.org/10.1016/j.trip.2025.101331",
-        "supplementary": []
+        "journal": "Advanced Materials Interfaces",
+        "doi": "https://doi.org/10.1002/admi.202400896",
+        "supplementary": [],
+        "status": "in press"
     },
     {
         "id": "686",
-        "authors": "Vinicius Diniz, Nicola M. Pugno, Susanne Rath, Colin R. Crick",
-        "title": "The Fabrication of Fluorine\u2010Free Stretchable Superhydrophobic Films Using Inverse Vulcanization Sulfur Polymer",
+        "authors": "N. M. Pugno",
+        "title": "Super\u2010Tough Silk: The Potential of Knots in Evolved Spiders",
         "pdf": "",
-        "journal": "Advanced Materials Interfaces",
-        "doi": "https://doi.org/10.1002/admi.202400896",
-        "supplementary": []
+        "journal": "Advanced Functional Materials",
+        "doi": "https://doi.org/10.1002/adfm.202421636",
+        "supplementary": [],
+        "status": "in press"
+    },
+    {
+        "id": "687",
+        "authors": "V. Fazio, A. D. Malay, K. Numata, N. M. Pugno, G. Puglisi",
+        "title": "A Physically\u2010Based Machine Learning Approach Inspires an Analytical Model for Spider Silk Supercontraction",
+        "pdf": "",
+        "journal": "Advanced Functional Materials",
+        "doi": "https://doi.org/10.1002/adfm.202420095",
+        "supplementary": [],
+        "status": "in press"
+    },
+    {
+        "id": "688",
+        "authors": "G. Greco, B. Schmuck, V. Fazio, G. Puglisi, G. Florio, N. M. Pugno, L. Fambri, A. Rising",
+        "title": "Temperature\u2010Induced Effects on Wet\u2010Spun Artificial Spider Silk Fibers",
+        "pdf": "",
+        "journal": "Advanced Functional Materials",
+        "doi": "https://doi.org/10.1002/adfm.202418435",
+        "supplementary": [],
+        "status": "in press"
     },
     {
         "id": "689",
-        "authors": "Vinicius Diniz, Nicola M. Pugno, Susanne Rath, Colin R. Crick",
-        "title": "The Fabrication of Fluorine\u2010Free Stretchable Superhydrophobic Films Using Inverse Vulcanization Sulfur Polymer",
+        "authors": "E. Dzinovic, L. Clark, N. Keyhani, N. Al Morhiby, P. Byford, S. Wang, S Gamea, K. Chu, E. Wnuk, Y. Liu, N. Rosik, F. Giuliani, N. M. Pugno, Z. J. Zhang, O. Addison, S. Elsharkawy",
+        "title": "Bioinspired Physico\u2010Chemical Surface Modifications for the Development of Advanced Retentive Systems",
         "pdf": "",
-        "journal": "Advanced Materials Interfaces",
-        "doi": "https://doi.org/10.1002/admi.202400896",
-        "supplementary": []
+        "journal": "Advanced Materials Technologies",
+        "doi": "https://doi.org/10.1002/admt.202400928",
+        "supplementary": [],
+        "status": "in press"
+    },
+    {
+        "id": "690",
+        "authors": "H. Chen, D. Wang, J. Li, Q. Yao, N. M. Pugno, Z. Li, Q. Chen",
+        "title": "A simple projection method to correlate the principal mechanical direction with the principal microstructural direction of human osteoporotic femoral heads",
+        "pdf": "",
+        "journal": "Medical &amp; Biological Engineering &amp; Computing",
+        "doi": "https://doi.org/10.1007/s11517-024-03162-4",
+        "supplementary": [],
+        "status": "in press"
+    },
+    {
+        "id": "691",
+        "authors": "M. Heshmati, S. K. Jalali, N. M. Pugno",
+        "title": "An innovative hierarchical design of hybrid meta-structures for longitudinal waveguides",
+        "pdf": "https://drive.google.com/open?id=1RR6zM1romxw_RpW1zRtKaINbBj9NMYKG&usp=drive_fs",
+        "journal": "International Journal of Mechanical Sciences, (2025), 287, 109963",
+        "doi": "https://doi.org/10.1016/j.ijmecsci.2025.109963",
+        "supplementary": [
+            {
+                "type": "Supplementary file",
+                "file": "https://ars.els-cdn.com/content/image/1-s2.0-S0020740325000499-mmc1.xlsx"
+            }
+        ],
+        "status": "published"
+    },
+    {
+        "id": "692",
+        "authors": "V. Kashyap, N. Giuseppe D. Novo, N. M. Pugno",
+        "title": "Frictional anisotropy of ant legs and related inspired 3D-printed textured surfaces with self-locomotion on ultrasound vibrating substrates",
+        "pdf": "https://drive.google.com/open?id=1R8JabPiso49mzbm-tMlgqPA70wsaJqpJ&usp=drive_fs",
+        "journal": "Tribology International, (2025), 204, 110513",
+        "doi": "https://doi.org/10.1016/j.triboint.2025.110513",
+        "supplementary": [
+            {
+                "type": "Supplementary file",
+                "file": "https://ars.els-cdn.com/content/image/1-s2.0-S0301679X25000088-mmc2.zip"
+            }
+        ],
+        "status": "published"
+    },
+    {
+        "id": "693",
+        "authors": "M. Guerrieri, N. Pugno",
+        "title": "ANTi-JAM solutions for smart roads: Ant-inspired traffic flow rules under CAVs environment",
+        "pdf": "https://pugno.dicam.unitn.it/NP_PDF/654-JTRIP-ANTI-JAM_solution.pdf",
+        "journal": "Transportation Research Interdisciplinary Perspectives, (2025), 29, 101331",
+        "doi": "https://doi.org/10.1016/j.trip.2025.101331",
+        "supplementary": [],
+        "status": "published"
     }
 ]
